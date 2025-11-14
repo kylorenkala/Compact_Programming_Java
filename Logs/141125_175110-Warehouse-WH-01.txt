@@ -1,0 +1,85 @@
+==== Log started at [14/11/25 17:51:10] ====
+[14/11/25 17:51:11] created 10 robots, each with its own logger.
+[14/11/25 17:51:11] created 5 charging stations.
+[14/11/25 17:51:11] warehouse WH-01 (Main Warehouse) initialized with 10 robots and 5 stations.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: assigning request Task-1 to robot R-000
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: robot R-000 completed request Task-1
+[14/11/25 17:51:11] dispatcher: assigning request Task-2 to robot R-000
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: robot R-000 completed request Task-2
+[14/11/25 17:51:11] dispatcher: assigning request Task-3 to robot R-001
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: sending robot R-000 to station CS-A
+[14/11/25 17:51:11] dispatcher: robot R-001 completed request Task-3
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: assigning request Task-4 to robot R-001
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: robot R-001 completed request Task-4
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: sending robot R-001 to station CS-A
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: assigning request Task-5 to robot R-000
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: robot R-000 completed request Task-5
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: assigning request Task-6 to robot R-000
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: robot R-000 completed request Task-6
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: sending robot R-000 to station CS-A
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: assigning request Task-7 to robot R-001
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: robot R-001 completed request Task-7
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: assigning request Task-8 to robot R-000
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] dispatcher: robot R-000 completed request Task-8
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] dispatcher: checking robots for charging requirements.
+[14/11/25 17:51:11] warehouse WH-01 completed update cycle.
+[14/11/25 17:51:11] writing final binary report to completed_report.dat...
+[14/11/25 17:51:11] final report written. total requests: 8
