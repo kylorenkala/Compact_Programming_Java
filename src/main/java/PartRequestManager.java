@@ -145,4 +145,9 @@ public class PartRequestManager implements Runnable {
     public void stop() {
         this.simulationIsRunning = false;
     }
+
+    public List<PartRequest> getQueuedRequests() {
+        // Return an immutable list snapshot of the current queue
+        return List.copyOf(requestQueue);
+    }
 }

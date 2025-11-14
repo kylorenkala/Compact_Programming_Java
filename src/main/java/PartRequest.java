@@ -26,4 +26,8 @@ public record PartRequest(
     public PartRequest withStatus(RequestStatus newStatus) {
         return new PartRequest(this.requestID, this.part, this.neededQuantity, newStatus);
     }
+
+    public String getRequestID() {
+        return requestID;
+    }
 }
