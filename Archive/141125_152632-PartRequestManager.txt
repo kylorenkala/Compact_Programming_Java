@@ -1,5 +1,0 @@
-==== Log started at [14/11/25 15:26:32] ====
-[14/11/25 15:26:32] PartRequestManager initialized.
-[14/11/25 15:26:32] PartRequestManager thread started. Polling file every 5000ms.
-[14/11/25 15:26:35] GUI added new request: PartRequest[requestID=Task-1, part=Part[partID=P1003, name=Spark Plug, description=Iridium spark plug], neededQuantity=1, status=PENDING]
-[14/11/25 15:28:50] PartRequestManager thread stopped.
