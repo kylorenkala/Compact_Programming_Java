@@ -42,19 +42,26 @@ public class Demo {
 
         // --- 4. ADD INITIAL REQUESTS (via Character Stream) ---
         System.out.println("\n--- Writing Initial Requests to file (Stream) ---");
+
+        // These are the part IDs that have stock in your inventory
+        //
+        String[] partIds = {"P1001", "P1002", "P1003", "P1015", "P1018"};
+
+        // Set this to how many tasks you want to generate
+        int totalTasksToCreate = 50;
+
         try (PrintWriter writer = new PrintWriter(new FileWriter("pending_requests.txt"))) {
-            writer.println("P1001,5");    // Oil Filter
-            writer.println("P1002,10");   // Air Filter
-            writer.println("P1003,15");  // Spark Plug
-            writer.println("P1015,5");    // Tire
-            writer.println("P1001,5");
-            writer.println("P1002,10");
-            writer.println("P1003,15");
-            writer.println("P1015,5");
-            writer.println("P1001,5");
-            writer.println("P1002,10");
-            writer.println("P1003,15");
-            writer.println("P1015,5");
+            System.out.println("Generating " + totalTasksToCreate + " initial tasks...");
+
+            for (int i = 0; i < totalTasksToCreate; i++) {
+                // This will cycle through the different part IDs
+                String randomPartId = partIds[i % partIds.length];
+
+                // Just request a small quantity for each task
+                int randomQuantity = (i % 3) + 1; // Will be 1, 2, or 3
+
+                writer.println(randomPartId + "," + randomQuantity);
+            }
         } catch (IOException e) {
             System.err.println("Error writing initial requests: " + e.getMessage());
         }
@@ -115,42 +122,13 @@ public class Demo {
         // --- 7. PRINT FINAL INVENTORY ---
         inventory.printInventory();
 
-        // --- 8. WRITE FINAL REPORT (via Byte Stream) ---
-        warehouse.writeFinalReport();
-
-        // --- 9. READ FINAL REPORT ---
-        readFinalReport();
-
         // --- 10. INTERACTIVE LOG VIEWER ---
         runLogViewer();
 
         System.out.println("\nApplication finished.");
     }
 
-    /**
-     * Reads the binary report file.
-     * This logic is from ReportReader.java.
-     */
-    private static void readFinalReport() {
-        String filename = "completed_report.dat";
-        System.out.println("\n--- Reading Binary Report (" + filename + ") ---");
 
-        try (DataInputStream dis = new DataInputStream(new FileInputStream(filename))) {
-            int requestCount = dis.readInt();
-            System.out.println("Found " + requestCount + " total requests in the report.");
-            System.out.println("----------------------------------------------");
-
-            for (int i = 0; i < requestCount; i++) {
-                String requestID = dis.readUTF();
-                String partID = dis.readUTF();
-                int quantity = dis.readInt();
-                String status = dis.readUTF();
-                System.out.println("  > ID: " + requestID + ", Part: " + partID + ", Qty: " + quantity + ", Status: " + status);
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading report file: " + e.getMessage());
-        }
-    }
 
     /**
      * REQUIREMENT: Interactive menu to view/delete logs using Regex.

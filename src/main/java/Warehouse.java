@@ -117,7 +117,7 @@ public class Warehouse {
     // --- Component Creation Methods ---
 
     private void createRobots(int count) {
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < count; i++) {
             String robotID = "R-" + String.format("%03d", (i+1));
             LoggerUtil robotLogger = new LoggerUtil("Robot-" + robotID);
             Robot robot = new Robot(robotID, robotLogger, this, this.requestManager, this.inventory);
@@ -127,7 +127,7 @@ public class Warehouse {
     }
 
     private void createStations(int count) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < count; i++) {
             String stationID = "CS-" + (char) ('A' + i);
             ChargingStation station = new ChargingStation(stationID, this.chargingQueue);
             this.stations.add(station);

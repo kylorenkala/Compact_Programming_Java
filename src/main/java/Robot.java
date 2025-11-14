@@ -5,7 +5,7 @@ public class Robot implements Runnable {
     // --- Constants ---
     public static final int MAX_BATTERY = 100;
     public static final int LOW_BATTERY_THRESHOLD = 25;
-    public static final int TASK_TIME_MS = 3000; // 3 seconds to "do" a task
+    public static final int TASK_TIME_MS = 5000; // 5 seconds to "do" a task
     public static final int BATTERY_DRAIN_BASE = 30;
     public static final int BATTERY_DRAIN_RANDOM = 20; // Drain will be 30-50
     public static final int CHARGE_RATE_PER_TICK = 10;
