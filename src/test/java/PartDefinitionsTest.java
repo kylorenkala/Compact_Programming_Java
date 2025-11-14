@@ -6,13 +6,7 @@ import java.util.Map;
 // Import JUnit 5 assertions
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for the PartDefinitions class.
- *
- * This test class verifies that the static factory methods
- * for creating sample parts and initial stock levels
- * return non-null, non-empty, and correctly structured data.
- */
+
 class PartDefinitionsTest {
 
     /**

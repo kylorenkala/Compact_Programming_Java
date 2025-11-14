@@ -46,6 +46,7 @@ public class Warehouse {
         // 2. Create Shared Resources
         this.allRequests = new ConcurrentHashMap<>();
         this.chargingQueue = new LinkedBlockingQueue<>();
+        // PartRequestManager is now just a plain object, not a thread
         this.requestManager = new PartRequestManager(inventory);
 
         // 3. Create Components
@@ -65,8 +66,10 @@ public class Warehouse {
             return;
         }
 
-        // +1 for the PartRequestManager
-        int poolSize = robots.size() + stations.size() + 1;
+        // --- MODIFIED ---
+        // Pool size is just robots + stations.
+        // PartRequestManager is no longer a thread.
+        int poolSize = robots.size() + stations.size();
         executor = Executors.newFixedThreadPool(poolSize);
         simulationRunning = true;
         logger.log("=== STARTING WAREHOUSE SIMULATION (Pool size: " + poolSize + ") ===");
@@ -75,7 +78,8 @@ public class Warehouse {
         // We use 'forEach' for a cleaner, more modern syntax
         stations.forEach(executor::submit);
         robots.forEach(executor::submit);
-        executor.submit(requestManager);
+        // --- REMOVED ---
+        // executor.submit(requestManager); // No longer needed
 
         try {
             // This waits indefinitely for all tasks to complete,
@@ -89,7 +93,6 @@ public class Warehouse {
         }
 
         logger.log("=== WAREHOUSE SIMULATION STOPPED ===");
-        writeFinalReport();
         inventory.printInventory();
     }
 
@@ -100,7 +103,8 @@ public class Warehouse {
         }
         logger.log("GUI requested simulation stop.");
         this.simulationRunning = false;
-        this.requestManager.stop(); // Tell manager thread to stop its loop
+        // --- REMOVED ---
+        // this.requestManager.stop(); // No longer needed
 
         if (executor != null) {
             // This sends an InterruptedException to all running threads

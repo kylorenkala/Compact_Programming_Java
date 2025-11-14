@@ -1,18 +1,9 @@
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 // Import JUnit 5 assertions
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for the PartRequest record.
- *
- * This test class verifies the logic in the static 'create' factory method,
- * including its argument validation and the thread-safe, sequential ID generation.
- * It also tests the 'withStatus' method to ensure it returns a new
- * record with the updated status.
- */
 class PartRequestTest {
 
     private Part samplePart;
