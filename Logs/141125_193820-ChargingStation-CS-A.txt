@@ -1,0 +1,10 @@
+==== Log started at [14/11/25 19:38:20] ====
+[14/11/25 19:38:20] Charging station CS-A initialized and ready.
+[14/11/25 19:38:20] Station thread CS-A started. Waiting for robots.
+[14/11/25 19:38:41] Docked Robot R-003. Starting charge.
+[14/11/25 19:38:49] Charging complete for Robot R-003
+[14/11/25 19:38:49] Releasing Robot R-003
+[14/11/25 19:38:49] Docked Robot R-004. Starting charge.
+[14/11/25 19:38:57] Charging complete for Robot R-004
+[14/11/25 19:38:57] Releasing Robot R-004
+[14/11/25 19:38:57] Docked Robot R-001. Starting charge.

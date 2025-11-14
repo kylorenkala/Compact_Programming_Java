@@ -1,0 +1,11 @@
+==== Log started at [14/11/25 19:38:20] ====
+[14/11/25 19:38:20] PartRequestManager initialized.
+[14/11/25 19:38:20] PartRequestManager thread started. Polling file every 5000ms.
+[14/11/25 19:38:21] GUI added new request: PartRequest[requestID=Task-1, part=Part[partID=P1001, name=Oil Filter, description=Standard oil filter], neededQuantity=1, status=PENDING]
+[14/11/25 19:38:23] GUI added new request: PartRequest[requestID=Task-2, part=Part[partID=P1001, name=Oil Filter, description=Standard oil filter], neededQuantity=1, status=PENDING]
+[14/11/25 19:38:24] GUI added new request: PartRequest[requestID=Task-3, part=Part[partID=P1001, name=Oil Filter, description=Standard oil filter], neededQuantity=1, status=PENDING]
+[14/11/25 19:38:26] GUI added new request: PartRequest[requestID=Task-4, part=Part[partID=P1001, name=Oil Filter, description=Standard oil filter], neededQuantity=1, status=PENDING]
+[14/11/25 19:38:28] GUI added new request: PartRequest[requestID=Task-5, part=Part[partID=P1001, name=Oil Filter, description=Standard oil filter], neededQuantity=1, status=PENDING]
+[14/11/25 19:38:30] GUI added new request: PartRequest[requestID=Task-6, part=Part[partID=P1001, name=Oil Filter, description=Standard oil filter], neededQuantity=1, status=PENDING]
+[14/11/25 19:38:31] GUI added new request: PartRequest[requestID=Task-7, part=Part[partID=P1001, name=Oil Filter, description=Standard oil filter], neededQuantity=1, status=PENDING]
+[14/11/25 19:38:33] GUI added new request: PartRequest[requestID=Task-8, part=Part[partID=P1001, name=Oil Filter, description=Standard oil filter], neededQuantity=1, status=PENDING]
