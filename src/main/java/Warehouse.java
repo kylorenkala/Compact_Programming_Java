@@ -86,6 +86,14 @@ public class Warehouse {
         }
     }
 
+    /**
+     * Allows a Robot to remove itself from the charging queue (e.g., after a timeout).
+     */
+    public boolean removeChargingRequest(Robot robot) {
+        // This is a thread-safe operation on LinkedBlockingQueue
+        return chargingQueue.remove(robot);
+    }
+
     // --- Thread-Safe method for report ---
 
     public void addCompletedRequest(PartRequest request) {

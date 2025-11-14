@@ -5,7 +5,7 @@ public class Robot implements Runnable {
     // --- Constants ---
     public static final int MAX_BATTERY = 100;
     public static final int LOW_BATTERY_THRESHOLD = 25;
-    public static final int TASK_TIME_MS = 5000; // 5 seconds to "do" a task
+    public static final int TASK_TIME_MS = 3000; // 3 seconds to "do" a task
     public static final int BATTERY_DRAIN_BASE = 30;
     public static final int BATTERY_DRAIN_RANDOM = 20; // Drain will be 30-50
     public static final int CHARGE_RATE_PER_TICK = 10;
@@ -18,6 +18,10 @@ public class Robot implements Runnable {
     private final LoggerUtil logger;
     private final Random random = new Random();
     private PartRequest currentTask; // The task it is currently working on
+
+    // --- NEW FIELD FOR TIMEOUT ---
+    /** Stores the system time (ms) when the robot entered the charging queue. */
+    private volatile long timeQueued;
 
     // --- CONCURRENCY: References to shared resources ---
     private final Warehouse warehouse; // To request charging
@@ -50,6 +54,9 @@ public class Robot implements Runnable {
         this.logger = logger;
         this.currentTask = null;
 
+        // This new field doesn't need to be initialized here
+        this.timeQueued = 0;
+
         this.warehouse = warehouse;
         this.requestManager = requestManager;
         this.inventory = inventory;
@@ -73,9 +80,34 @@ public class Robot implements Runnable {
                     case LOW_BATTERY:
                         actRequestCharge();
                         break;
+
+                    // --- MODIFIED CASE ---
+                    // This block now contains the timeout logic
                     case WAITING_FOR_CHARGE:
-                        Thread.sleep(1000); // Wait to be picked up
+                        // Check if we have been waiting too long (15 seconds)
+                        if (System.currentTimeMillis() - this.timeQueued > 15000) {
+
+                            // Try to remove ourselves from the queue
+                            // This requires the new removeChargingRequest method in Warehouse.java
+                            if (warehouse.removeChargingRequest(this)) {
+                                // Successfully removed
+                                logger.log("Robot " + robotID + " left the charging queue (waited > 15s). Will try again.");
+                                setStatus(RobotStatus.IDLE);
+                                break; // Break from the switch
+                            } else {
+                                // --- THIS IS THE FIX ---
+                                // Remove failed, which means a station JUST grabbed us.
+                                // Don't sleep. Continue the loop to re-check status immediately.
+                                // The station will have had time to set our status to CHARGING.
+                                continue;
+                                // --- END OF FIX ---
+                            }
+                        }
+
+                        Thread.sleep(1000); // Wait 1 sec, then check again
                         break;
+                    // --- END OF MODIFICATION ---
+
                     case CHARGING:
                         Thread.sleep(1000); // Wait to be finished
                         break;
@@ -132,19 +164,27 @@ public class Robot implements Runnable {
         goIdle();
     }
 
+    // --- MODIFIED METHOD ---
     private void actRequestCharge() throws InterruptedException {
         logger.log("Robot " + robotID + " is requesting a charging station.");
         setStatus(RobotStatus.WAITING_FOR_CHARGE);
 
+        // This calls the original method in Warehouse.java
         boolean gotInQueue = warehouse.requestCharging(this);
 
         if (gotInQueue) {
             logger.log("Robot " + robotID + " is in the queue, waiting for a station.");
+            // --- NEW LINE ---
+            // Record the time we successfully joined the queue
+            this.timeQueued = System.currentTimeMillis();
         } else {
-            logger.log("Robot " + robotID + " left the charging queue (waited > 15s). Will try again.");
+            // This 'else' block is now unlikely to be hit due to the unbounded queue,
+            // but we leave the original logic just in case.
+            logger.log("Robot " + robotID + " could not be added to charging queue. Will try again.");
             setStatus(RobotStatus.IDLE);
         }
     }
+    // --- END OF MODIFICATION ---
 
     private void assignTask(PartRequest request) {
         this.currentTask = request;

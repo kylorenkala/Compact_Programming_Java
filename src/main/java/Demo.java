@@ -21,7 +21,7 @@ public class Demo {
     // Simulate M tasks with K available AGV (Robots)
     private static final int K_ROBOTS = 20;
     // Simulate N charging stations
-    private static final int N_STATIONS = 1;
+    private static final int N_STATIONS = 3;
     // How long to run the simulation for (in milliseconds)
     private static final int SIMULATION_DURATION_MS = 60000; // 30 seconds
 
