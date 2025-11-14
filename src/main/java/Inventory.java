@@ -70,9 +70,6 @@ public class Inventory {
             throw new InsufficientStockException(errorMsg);
         }
 
-        // 'put' is also thread-safe, but we need the whole
-        // 'check-then-set' operation to be atomic, which is why
-        // the entire method is 'synchronized'.
         this.stock.put(part, currentQuantity - quantity);
         logger.log("Removed " + quantity + " units of " + part.name()
                 + ". Remaining: " + (currentQuantity - quantity));

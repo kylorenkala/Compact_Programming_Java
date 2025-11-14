@@ -42,12 +42,6 @@ public class WarehouseSystemGUI extends JFrame {
     // --- UI Update Timer ---
     private final Timer updateTimer;
 
-    // --- Column Names ---
-    private final String[] robotColumnNames = {"Robot ID", "Status", "Task ID", "Battery"};
-    private final String[] inventoryColumnNames = {"Part ID", "Part Name", "Stock"};
-    private final String[] stationColumnNames = {"Station ID", "Status", "Charging Robot"};
-    private final String[] taskQueueColumnNames = {"Task ID", "Part", "Qty", "Status"}; // <-- ADDED
-
 
     public WarehouseSystemGUI() {
         setTitle("Warehouse Control System");
@@ -56,22 +50,28 @@ public class WarehouseSystemGUI extends JFrame {
         setLayout(new BorderLayout(10, 10));
 
         // --- Initialize Models (must be done before panels) ---
+        // --- Column Names ---
+        String[] robotColumnNames = {"Robot ID", "Status", "Task ID", "Battery"};
         robotTableModel = new DefaultTableModel(robotColumnNames, 0) {
             @Override public boolean isCellEditable(int row, int column) { return false; }
         };
         robotTable = new JTable(robotTableModel);
 
+        String[] inventoryColumnNames = {"Part ID", "Part Name", "Stock"};
         inventoryTableModel = new DefaultTableModel(inventoryColumnNames, 0) {
             @Override public boolean isCellEditable(int row, int column) { return false; }
         };
         inventoryTable = new JTable(inventoryTableModel);
 
+        String[] stationColumnNames = {"Station ID", "Status", "Charging Robot"};
         stationTableModel = new DefaultTableModel(stationColumnNames, 0) {
             @Override public boolean isCellEditable(int row, int column) { return false; }
         };
         stationTable = new JTable(stationTableModel);
 
         // --- NEW: Initialize Task Queue Table ---
+        // <-- ADDED
+        String[] taskQueueColumnNames = {"Task ID", "Part", "Qty", "Status"};
         taskQueueTableModel = new DefaultTableModel(taskQueueColumnNames, 0) {
             @Override public boolean isCellEditable(int row, int column) { return false; }
         };
@@ -193,8 +193,7 @@ public class WarehouseSystemGUI extends JFrame {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof Part) {
-                    Part part = (Part) value;
+                if (value instanceof Part part) {
                     setText(part.name() + " (" + part.partID() + ")");
                 }
                 return this;
@@ -364,10 +363,9 @@ public class WarehouseSystemGUI extends JFrame {
         taskQueueTableModel.setRowCount(0);
 
         // 1. Create a new list to hold all active tasks
-        List<PartRequest> allActiveTasks = new java.util.ArrayList<>();
 
         // 2. Add all tasks that are PENDING (waiting in the queue)
-        allActiveTasks.addAll(warehouse.getRequestManager().getQueuedRequests());
+        List<PartRequest> allActiveTasks = new java.util.ArrayList<>(warehouse.getRequestManager().getQueuedRequests());
 
         // 3. Add all tasks that are IN_PROGRESS (being worked on by robots)
         for (Robot robot : warehouse.getRobots()) {
@@ -484,7 +482,7 @@ public class WarehouseSystemGUI extends JFrame {
     }
 
     // --- Custom Inner Class for Battery Bar Renderer ---
-    class BatteryCellRenderer extends JProgressBar implements TableCellRenderer {
+    static class BatteryCellRenderer extends JProgressBar implements TableCellRenderer {
 
         public BatteryCellRenderer() {
             super(0, 100);
@@ -510,7 +508,7 @@ public class WarehouseSystemGUI extends JFrame {
     }
 
     // --- Custom Inner Class for Status Color Renderer ---
-    class StatusColorRenderer extends DefaultTableCellRenderer {
+    static class StatusColorRenderer extends DefaultTableCellRenderer {
 
         private final Color COLOR_CHARGING = new Color(144, 238, 144); // Light Green
         private final Color COLOR_LOW_BATTERY = new Color(255, 210, 120); // Light Orange

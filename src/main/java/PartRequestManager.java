@@ -34,16 +34,10 @@ public class PartRequestManager implements Runnable {
         logger.log("PartRequestManager initialized.");
     }
 
-    /**
-     * GUI INTEGRATION: New public method for the GUI to add a task.
-     * This is 'synchronized' to safely coordinate with the 'wait()'
-     * call in the Robot threads.
-     */
     public synchronized void addNewRequest(Part part, int quantity) {
         PartRequest newRequest = PartRequest.create(part, quantity);
         this.requestQueue.add(newRequest); // 'add' is already thread-safe
         logger.log("GUI added new request: " + newRequest);
-        // Wake up any and all robot threads that are waiting for a task
         notifyAll();
     }
 
@@ -68,11 +62,6 @@ public class PartRequestManager implements Runnable {
         }
         logger.log("PartRequestManager thread stopped.");
     }
-
-    /**
-     * REFACTOR: This method is NO LONGER synchronized.
-     * It does all slow file I/O *before* acquiring a lock.
-     */
     public void loadRequestsFromFile() throws RequestProcessingException {
         if (Files.notExists(REQUEST_FILE_PATH)) {
             return; // File doesn't exist, nothing to do
@@ -119,9 +108,6 @@ public class PartRequestManager implements Runnable {
                 throw new RequestProcessingException("Could not clear request file: " + REQUEST_FILE_PATH, e);
             }
 
-            // --- 3. Update queue and notify robots (SHORT LOCK) ---
-            // This is the *only* part that needs to be synchronized.
-            // It's fast and doesn't do I/O.
             synchronized (this) {
                 this.requestQueue.addAll(newTasks);
                 // Wake up waiting robots since we added tasks
@@ -130,10 +116,6 @@ public class PartRequestManager implements Runnable {
         }
     }
 
-    /**
-     * This method is 'synchronized' to safely coordinate with
-     * the 'wait()' call in the Robot threads.
-     */
     public synchronized PartRequest getNextRequest() {
         return this.requestQueue.poll();
     }

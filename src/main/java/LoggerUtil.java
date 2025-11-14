@@ -63,7 +63,7 @@ public class LoggerUtil {
                 oldLogs = stream
                         .filter(Files::isRegularFile) // Make sure it's a file
                         .filter(path -> path.getFileName().toString().endsWith(logSuffix))
-                        .collect(Collectors.toList());
+                        .toList();
             }
 
             // 3. Move them to the archive
@@ -101,8 +101,6 @@ public class LoggerUtil {
         String timestamp = LocalDateTime.now().format(LOG_DATE_FORMAT);
         String logEntry = "[" + timestamp + "] " + message;
 
-        // Using 'CREATE' (in case header failed) and 'APPEND' is the correct
-        // combination for logging.
         try (BufferedWriter writer = Files.newBufferedWriter(logFile,
                 StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
             writer.write(logEntry);

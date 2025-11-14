@@ -65,7 +65,6 @@ public class Warehouse {
             return;
         }
 
-        // Create a thread pool for all our components
         // +1 for the PartRequestManager
         int poolSize = robots.size() + stations.size() + 1;
         executor = Executors.newFixedThreadPool(poolSize);
