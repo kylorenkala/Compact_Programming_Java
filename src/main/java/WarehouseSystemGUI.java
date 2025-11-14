@@ -395,10 +395,6 @@ public class WarehouseSystemGUI extends JFrame {
 
         if (selectedPart != null && warehouse != null) {
             warehouse.getRequestManager().addNewRequest(selectedPart, quantity);
-            JOptionPane.showMessageDialog(this,
-                    "Task added to queue: " + quantity + "x " + selectedPart.name(),
-                    "Task Added",
-                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
