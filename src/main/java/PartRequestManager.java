@@ -12,12 +12,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class PartRequestManager {
     private final Queue<PartRequest> requestQueue;
     private final Inventory inventory;
-    // --- REMOVED ---
-    // private static final Path REQUEST_FILE_PATH = Path.of("pending_requests.txt");
     private final LoggerUtil logger;
-    // --- REMOVED ---
-    // private volatile boolean simulationIsRunning = true;
-    // private static final long FILE_POLL_INTERVAL_MS = 5000; // 5 seconds
 
     public PartRequestManager(Inventory inventory) {
         this.requestQueue = new ConcurrentLinkedQueue<>();
