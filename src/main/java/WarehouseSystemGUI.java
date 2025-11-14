@@ -25,7 +25,7 @@ public class WarehouseSystemGUI extends JFrame {
     private final JTextArea logTextArea;
     private final JButton refreshLogButton;
 
-    // --- NEW: Simulation config spinners ---
+    // --- Simulation config spinners ---
     private final JSpinner robotCountSpinner;
     private final JSpinner stationCountSpinner;
 
@@ -33,9 +33,11 @@ public class WarehouseSystemGUI extends JFrame {
     private final DefaultTableModel robotTableModel;
     private final DefaultTableModel inventoryTableModel;
     private final DefaultTableModel stationTableModel;
+    private final DefaultTableModel taskQueueTableModel; // <-- ADDED
     private final JTable robotTable;
     private final JTable inventoryTable;
     private final JTable stationTable;
+    private final JTable taskQueueTable; // <-- ADDED
 
     // --- UI Update Timer ---
     private final Timer updateTimer;
@@ -44,6 +46,7 @@ public class WarehouseSystemGUI extends JFrame {
     private final String[] robotColumnNames = {"Robot ID", "Status", "Task ID", "Battery"};
     private final String[] inventoryColumnNames = {"Part ID", "Part Name", "Stock"};
     private final String[] stationColumnNames = {"Station ID", "Status", "Charging Robot"};
+    private final String[] taskQueueColumnNames = {"Task ID", "Part", "Qty", "Status"}; // <-- ADDED
 
 
     public WarehouseSystemGUI() {
@@ -68,6 +71,13 @@ public class WarehouseSystemGUI extends JFrame {
         };
         stationTable = new JTable(stationTableModel);
 
+        // --- NEW: Initialize Task Queue Table ---
+        taskQueueTableModel = new DefaultTableModel(taskQueueColumnNames, 0) {
+            @Override public boolean isCellEditable(int row, int column) { return false; }
+        };
+        taskQueueTable = new JTable(taskQueueTableModel);
+        // --- END NEW ---
+
         // --- Initialize Components for Panels ---
         startButton = new JButton("Start Simulation");
         stopButton = new JButton("Stop Simulation");
@@ -78,7 +88,6 @@ public class WarehouseSystemGUI extends JFrame {
         logTextArea = new JTextArea();
         refreshLogButton = new JButton("Refresh Log");
 
-        // --- NEW: Init config spinners ---
         robotCountSpinner = new JSpinner(new SpinnerNumberModel(10, 1, 50, 1)); // Default 10
         stationCountSpinner = new JSpinner(new SpinnerNumberModel(5, 1, 10, 1)); // Default 5
 
@@ -104,7 +113,6 @@ public class WarehouseSystemGUI extends JFrame {
         JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
         controlPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        // --- NEW: Add config spinners ---
         controlPanel.add(new JLabel("Robots:"));
         controlPanel.add(robotCountSpinner);
         controlPanel.add(new JLabel("Stations:"));
@@ -130,7 +138,6 @@ public class WarehouseSystemGUI extends JFrame {
         statusPanel.add(new JLabel("Robot Status (Live)"));
         statusPanel.add(initTablePanel(robotTable, new int[]{80, 120, 80, 100}));
 
-        // --- NEW: Apply custom renderers ---
         robotTable.getColumnModel().getColumn(1).setCellRenderer(new StatusColorRenderer());
         robotTable.getColumnModel().getColumn(3).setCellRenderer(new BatteryCellRenderer());
 
@@ -152,7 +159,7 @@ public class WarehouseSystemGUI extends JFrame {
         table.setFillsViewportHeight(true);
         table.setFont(new Font("Monospaced", Font.PLAIN, 12));
         table.getTableHeader().setFont(new Font("Monospaced", Font.BOLD, 12));
-        table.setRowHeight(20); // Give progress bars room
+        table.setRowHeight(20);
 
         TableColumnModel columnModel = table.getColumnModel();
         for (int i = 0; i < widths.length; i++) {
@@ -172,7 +179,10 @@ public class WarehouseSystemGUI extends JFrame {
         // --- Add Task Panel ---
         JPanel addTaskPanel = new JPanel(new GridBagLayout());
         addTaskPanel.setBorder(BorderFactory.createTitledBorder("Add New Task"));
+
+        // --- THIS LINE IS IMPORTANT ---
         GridBagConstraints gbc = new GridBagConstraints();
+
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
@@ -201,6 +211,15 @@ public class WarehouseSystemGUI extends JFrame {
         addTaskPanel.add(addTaskButton, gbc);
         addTaskButton.addActionListener(e -> addNewTask());
 
+        // --- NEW: Task Queue Panel ---
+        JPanel taskQueuePanel = new JPanel(new BorderLayout());
+        taskQueuePanel.setBorder(BorderFactory.createTitledBorder("Task Queue (Live)"));
+        // Give this a max height so it doesn't expand forever
+        taskQueuePanel.setMaximumSize(new Dimension(350, 200));
+        // Use the existing table helper. Widths are {Task ID, Part, Qty, Status}
+        taskQueuePanel.add(initTablePanel(taskQueueTable, new int[]{80, 120, 40, 80}), BorderLayout.CENTER);
+        // --- END NEW ---
+
         // --- Log Viewer Panel ---
         JPanel logViewerPanel = new JPanel(new BorderLayout(5, 5));
         logViewerPanel.setBorder(BorderFactory.createTitledBorder("Log Viewer"));
@@ -216,20 +235,18 @@ public class WarehouseSystemGUI extends JFrame {
         logViewerPanel.add(logControlPanel, BorderLayout.NORTH);
         logViewerPanel.add(logScrollPane, BorderLayout.CENTER);
 
-        // --- REFACTOR: Use new background-threaded methods ---
         refreshLogButton.addActionListener(e -> refreshLogFileList());
         logFileComboBox.addActionListener(e -> {
-            // Only fire when the user makes a selection
             if (e.getActionCommand().equals("comboBoxChanged")) {
                 loadSelectedLog();
             }
         });
-
-        // Load the initial list
         refreshLogFileList();
 
         // Add sub-panels to main side panel
         sidePanel.add(addTaskPanel);
+        sidePanel.add(Box.createVerticalStrut(10));
+        sidePanel.add(taskQueuePanel); // <-- ADDED
         sidePanel.add(Box.createVerticalStrut(10));
         sidePanel.add(logViewerPanel);
 
@@ -239,7 +256,6 @@ public class WarehouseSystemGUI extends JFrame {
     // --- Simulation Control ---
 
     private void startSimulation() {
-        // --- NEW: Read from spinners ---
         int robotCount = (int) robotCountSpinner.getValue();
         int stationCount = (int) stationCountSpinner.getValue();
 
@@ -253,14 +269,11 @@ public class WarehouseSystemGUI extends JFrame {
             }
             @Override
             protected void done() {
-                // This 'done' block runs on the EDT
-                // If the simulation stops (or crashes), reset the UI
                 stopSimulation();
             }
         };
         simulationWorker.execute();
 
-        // Disable controls
         startButton.setEnabled(false);
         stopButton.setEnabled(true);
         addTaskButton.setEnabled(true);
@@ -280,7 +293,6 @@ public class WarehouseSystemGUI extends JFrame {
             simulationWorker.cancel(true);
         }
 
-        // Enable controls
         startButton.setEnabled(true);
         stopButton.setEnabled(false);
         addTaskButton.setEnabled(false);
@@ -291,7 +303,6 @@ public class WarehouseSystemGUI extends JFrame {
             updateTimer.stop();
         }
         System.out.println("Simulation stopped.");
-        // We run one final update to get the last state
         updateStatusPanels();
     }
 
@@ -308,10 +319,10 @@ public class WarehouseSystemGUI extends JFrame {
                 .forEach(robot -> {
                     Vector<Object> row = new Vector<>();
                     row.add(robot.getRobotID());
-                    row.add(robot.getStatus()); // Will be rendered by StatusColorRenderer
+                    row.add(robot.getStatus());
                     PartRequest task = robot.getCurrentTask();
-                    row.add((task == null) ? "---" : task.requestID());
-                    row.add(robot.getBatteryLevel()); // Will be rendered by BatteryCellRenderer
+                    row.add((task == null) ? "---" : task.getRequestID());
+                    row.add(robot.getBatteryLevel());
                     robotTableModel.addRow(row);
                 });
 
@@ -347,6 +358,37 @@ public class WarehouseSystemGUI extends JFrame {
                     row.add(entry.getValue());
                     inventoryTableModel.addRow(row);
                 });
+
+        // --- NEW: Update Task Queue Table ---
+        // NOTE: This assumes your backend has these methods.
+        taskQueueTableModel.setRowCount(0);
+
+        // 1. Create a new list to hold all active tasks
+        List<PartRequest> allActiveTasks = new java.util.ArrayList<>();
+
+        // 2. Add all tasks that are PENDING (waiting in the queue)
+        allActiveTasks.addAll(warehouse.getRequestManager().getQueuedRequests());
+
+        // 3. Add all tasks that are IN_PROGRESS (being worked on by robots)
+        for (Robot robot : warehouse.getRobots()) {
+            PartRequest currentTask = robot.getCurrentTask();
+            if (currentTask != null) {
+                allActiveTasks.add(currentTask);
+            }
+        }
+
+        // 4. Now populate the table with this combined list
+        allActiveTasks.stream()
+                .sorted(Comparator.comparing(PartRequest::getRequestID)) // Sort by ID
+                .forEach(task -> {
+                    Vector<Object> row = new Vector<>();
+                    row.add(task.getRequestID());
+                    row.add(task.part().name()); // <-- WAS: task.getPart().name()
+                    row.add(task.neededQuantity()); // <-- WAS: task.getQuantity()
+                    row.add(task.status()); // <-- WAS: task.getStatus()
+                    taskQueueTableModel.addRow(row);
+                });
+        // --- END NEW ---
     }
 
     private void addNewTask() {
@@ -366,7 +408,6 @@ public class WarehouseSystemGUI extends JFrame {
      * REFACTOR: Runs file I/O on a background thread.
      */
     private void refreshLogFileList() {
-        // Disable controls
         refreshLogButton.setEnabled(false);
         logFileComboBox.setEnabled(false);
         logTextArea.setText("Refreshing log file list...");
@@ -374,15 +415,13 @@ public class WarehouseSystemGUI extends JFrame {
         SwingWorker<List<String>, Void> worker = new SwingWorker<List<String>, Void>() {
             @Override
             protected List<String> doInBackground() throws Exception {
-                // This runs on a worker thread
                 return LoggerUtil.getLogFiles();
             }
 
             @Override
             protected void done() {
-                // This runs back on the EDT
                 try {
-                    List<String> logFiles = get(); // Get the result from doInBackground
+                    List<String> logFiles = get();
                     logFileComboBox.removeAllItems();
                     for (String logFile : logFiles) {
                         logFileComboBox.addItem(logFile);
@@ -391,7 +430,6 @@ public class WarehouseSystemGUI extends JFrame {
                 } catch (Exception e) {
                     logTextArea.setText("Error reading log directory: \n" + e.getMessage());
                 }
-                // Re-enable controls
                 refreshLogButton.setEnabled(true);
                 logFileComboBox.setEnabled(true);
             }
@@ -409,7 +447,6 @@ public class WarehouseSystemGUI extends JFrame {
             return;
         }
 
-        // Disable controls
         refreshLogButton.setEnabled(false);
         logFileComboBox.setEnabled(false);
         logTextArea.setText("Loading " + selectedFile + "...");
@@ -417,13 +454,11 @@ public class WarehouseSystemGUI extends JFrame {
         SwingWorker<String, Void> worker = new SwingWorker<String, Void>() {
             @Override
             protected String doInBackground() throws Exception {
-                // This runs on a worker thread
                 return LoggerUtil.getLogContent(selectedFile);
             }
 
             @Override
             protected void done() {
-                // This runs back on the EDT
                 try {
                     String content = get();
                     logTextArea.setText(content);
@@ -431,7 +466,6 @@ public class WarehouseSystemGUI extends JFrame {
                 } catch (Exception e) {
                     logTextArea.setText("Error reading log file: \n" + e.getMessage());
                 }
-                // Re-enable controls
                 refreshLogButton.setEnabled(true);
                 logFileComboBox.setEnabled(true);
             }
@@ -449,15 +483,11 @@ public class WarehouseSystemGUI extends JFrame {
         });
     }
 
-    // --- NEW: Custom Inner Class for Battery Bar Renderer ---
-
-    /**
-     * This custom renderer draws a JProgressBar in the battery column.
-     */
+    // --- Custom Inner Class for Battery Bar Renderer ---
     class BatteryCellRenderer extends JProgressBar implements TableCellRenderer {
 
         public BatteryCellRenderer() {
-            super(0, 100); // Min 0, Max 100
+            super(0, 100);
             setStringPainted(true);
             setFont(new Font("Monospaced", Font.PLAIN, 12));
         }
@@ -466,11 +496,9 @@ public class WarehouseSystemGUI extends JFrame {
         public Component getTableCellRendererComponent(JTable table, Object value,
                                                        boolean isSelected, boolean hasFocus,
                                                        int row, int column) {
-            // 'value' is the Integer battery level
             int batteryLevel = (Integer) value;
             setValue(batteryLevel);
 
-            // Set the color of the bar
             if (batteryLevel < Robot.LOW_BATTERY_THRESHOLD) {
                 setForeground(Color.RED);
             } else {
@@ -481,14 +509,9 @@ public class WarehouseSystemGUI extends JFrame {
         }
     }
 
-    // --- NEW: Custom Inner Class for Status Color Renderer ---
-
-    /**
-     * This custom renderer colors the background of the "Status" cell.
-     */
+    // --- Custom Inner Class for Status Color Renderer ---
     class StatusColorRenderer extends DefaultTableCellRenderer {
 
-        // Pre-defined colors for efficiency
         private final Color COLOR_CHARGING = new Color(144, 238, 144); // Light Green
         private final Color COLOR_LOW_BATTERY = new Color(255, 210, 120); // Light Orange
         private final Color COLOR_WORKING = new Color(173, 216, 230); // Light Blue
@@ -497,15 +520,14 @@ public class WarehouseSystemGUI extends JFrame {
         public Component getTableCellRendererComponent(JTable table, Object value,
                                                        boolean isSelected, boolean hasFocus,
                                                        int row, int column) {
-            // Get the default component (a JLabel)
             Component c = super.getTableCellRendererComponent(table, value,
                     isSelected, hasFocus,
                     row, column);
 
+            // This assumes your Robot.getStatus() returns an enum RobotStatus
             RobotStatus status = (RobotStatus) value;
 
             if (!isSelected) {
-                // Set background color based on status
                 switch (status) {
                     case CHARGING:
                         c.setBackground(COLOR_CHARGING);
@@ -522,7 +544,6 @@ public class WarehouseSystemGUI extends JFrame {
                         c.setBackground(table.getBackground());
                 }
             }
-
             return c;
         }
     }
