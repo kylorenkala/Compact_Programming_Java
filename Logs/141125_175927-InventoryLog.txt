@@ -1,0 +1,164 @@
+==== Log started at [14/11/25 17:59:27] ====
+[14/11/25 17:59:27] Inventory initialized. Total stock: 13 / 500
+[14/11/25 17:59:27] ========== INVENTORY REPORT ==========
+[14/11/25 17:59:27] Capacity: 13 / 500
+[14/11/25 17:59:27] - Air Filter           (ID: P1002): 3 units
+[14/11/25 17:59:27] - Oil Filter           (ID: P1001): 5 units
+[14/11/25 17:59:27] - Spark Plug           (ID: P1003): 5 units
+[14/11/25 17:59:27] =====================================
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Removed 5 units of Oil Filter. Remaining: 0
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Air Filter. Requested: 10, Available: 3
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Spark Plug. Requested: 15, Available: 5
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Oil Filter. Requested: 5, Available: 0
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Air Filter. Requested: 10, Available: 3
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Spark Plug. Requested: 15, Available: 5
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Oil Filter. Requested: 5, Available: 0
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Air Filter. Requested: 10, Available: 3
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Spark Plug. Requested: 15, Available: 5
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Oil Filter. Requested: 5, Available: 0
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Air Filter. Requested: 10, Available: 3
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Spark Plug. Requested: 15, Available: 5
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Oil Filter. Requested: 5, Available: 0
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Air Filter. Requested: 10, Available: 3
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Spark Plug. Requested: 15, Available: 5
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Oil Filter. Requested: 5, Available: 0
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Air Filter. Requested: 10, Available: 3
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Spark Plug. Requested: 15, Available: 5
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Oil Filter. Requested: 5, Available: 0
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Air Filter. Requested: 10, Available: 3
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Spark Plug. Requested: 15, Available: 5
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Oil Filter. Requested: 5, Available: 0
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Air Filter. Requested: 10, Available: 3
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:27] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:27] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:27] Part not found with ID: P1015
+[14/11/25 17:59:27] Error: Not enough stock of Spark Plug. Requested: 15, Available: 5
+[14/11/25 17:59:27] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:28] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:28] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:28] Part not found with ID: P1015
+[14/11/25 17:59:28] Error: Not enough stock of Oil Filter. Requested: 5, Available: 0
+[14/11/25 17:59:28] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:28] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:28] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:28] Part not found with ID: P1015
+[14/11/25 17:59:28] Error: Not enough stock of Air Filter. Requested: 10, Available: 3
+[14/11/25 17:59:28] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:28] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:28] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:28] Part not found with ID: P1015
+[14/11/25 17:59:28] Error: Not enough stock of Spark Plug. Requested: 15, Available: 5
+[14/11/25 17:59:28] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:28] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:28] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:28] Part not found with ID: P1015
+[14/11/25 17:59:28] Error: Not enough stock of Oil Filter. Requested: 5, Available: 0
+[14/11/25 17:59:28] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:28] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:28] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:28] Part not found with ID: P1015
+[14/11/25 17:59:28] Error: Not enough stock of Air Filter. Requested: 10, Available: 3
+[14/11/25 17:59:28] Part found: Oil Filter (ID: P1001)
+[14/11/25 17:59:28] Part found: Air Filter (ID: P1002)
+[14/11/25 17:59:28] Part found: Spark Plug (ID: P1003)
+[14/11/25 17:59:28] Part not found with ID: P1015
+[14/11/25 17:59:28] Error: Not enough stock of Spark Plug. Requested: 15, Available: 5
+[14/11/25 17:59:28] ========== INVENTORY REPORT ==========
+[14/11/25 17:59:28] Capacity: 8 / 500
+[14/11/25 17:59:28] - Air Filter           (ID: P1002): 3 units
+[14/11/25 17:59:28] - Oil Filter           (ID: P1001): 0 units
+[14/11/25 17:59:28] - Spark Plug           (ID: P1003): 5 units
+[14/11/25 17:59:28] =====================================

@@ -1,0 +1,66 @@
+==== Log started at [14/11/25 17:55:19] ====
+[14/11/25 17:55:19] Created 10 robots, each with its own logger.
+[14/11/25 17:55:19] Created 5 charging stations.
+[14/11/25 17:55:19] Warehouse WH-01 (Main Warehouse) initialized with 10 robots and 5 stations.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] CRITICAL: Failed to process part requests file. No new tasks will be loaded this tick.
+[14/11/25 17:55:19] Warehouse WH-01 updated all components.
+[14/11/25 17:55:19] Writing final binary report to completed_report.dat...
+[14/11/25 17:55:19] Final report written successfully. Total requests: 30
