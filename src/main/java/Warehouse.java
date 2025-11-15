@@ -1,5 +1,4 @@
 import java.io.DataOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,8 +15,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Warehouse {
 
-    private final String warehouseID;
-    private final String name;
     private final LoggerUtil logger;
 
     // --- Shared Resources ---
@@ -35,8 +32,8 @@ public class Warehouse {
     private volatile boolean simulationRunning = false;
 
     public Warehouse(int robotCount, int stationCount) {
-        this.warehouseID = "WH-01";
-        this.name = "Main Warehouse";
+        String warehouseID = "WH-01";
+        String name = "Main Warehouse";
         this.logger = new LoggerUtil("Warehouse-" + warehouseID);
 
         // 1. Create Parts and Initial Stock
@@ -46,7 +43,6 @@ public class Warehouse {
         // 2. Create Shared Resources
         this.allRequests = new ConcurrentHashMap<>();
         this.chargingQueue = new LinkedBlockingQueue<>();
-        // PartRequestManager is now just a plain object, not a thread
         this.requestManager = new PartRequestManager(inventory);
 
         // 3. Create Components
@@ -66,9 +62,7 @@ public class Warehouse {
             return;
         }
 
-        // --- MODIFIED ---
-        // Pool size is just robots + stations.
-        // PartRequestManager is no longer a thread.
+
         int poolSize = robots.size() + stations.size();
         executor = Executors.newFixedThreadPool(poolSize);
         simulationRunning = true;
@@ -78,17 +72,12 @@ public class Warehouse {
         // We use 'forEach' for a cleaner, more modern syntax
         stations.forEach(executor::submit);
         robots.forEach(executor::submit);
-        // --- REMOVED ---
-        // executor.submit(requestManager); // No longer needed
+
 
         try {
-            // This waits indefinitely for all tasks to complete,
-            // which will only happen after shutdown.
             executor.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS);
         } catch (InterruptedException e) {
-            // This is the expected result of stopSimulation()
             logger.log("Simulation main loop interrupted. Shutting down.");
-            // Restore the interrupted status
             Thread.currentThread().interrupt();
         }
 
@@ -103,8 +92,7 @@ public class Warehouse {
         }
         logger.log("GUI requested simulation stop.");
         this.simulationRunning = false;
-        // --- REMOVED ---
-        // this.requestManager.stop(); // No longer needed
+
 
         if (executor != null) {
             // This sends an InterruptedException to all running threads
@@ -125,7 +113,6 @@ public class Warehouse {
             return accepted;
         } catch (InterruptedException e) {
             logger.log("Robot " + robot.getRobotID() + " interrupted while waiting for charge.");
-            // Restore the interrupted status
             Thread.currentThread().interrupt();
             return false;
         }
@@ -175,8 +162,7 @@ public class Warehouse {
     }
 
     private void createStations(int count) {
-        // --- BUG FIX ---
-        // The loop now correctly uses 'count' instead of being hard-coded to '2'.
+
         for (int i = 0; i < count; i++) {
             // --- END FIX ---
             String stationID = "CS-" + (char) ('A' + i);

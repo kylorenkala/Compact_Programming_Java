@@ -33,11 +33,11 @@ public class WarehouseSystemGUI extends JFrame {
     private final DefaultTableModel robotTableModel;
     private final DefaultTableModel inventoryTableModel;
     private final DefaultTableModel stationTableModel;
-    private final DefaultTableModel taskQueueTableModel; // <-- ADDED
+    private final DefaultTableModel taskQueueTableModel;
     private final JTable robotTable;
     private final JTable inventoryTable;
     private final JTable stationTable;
-    private final JTable taskQueueTable; // <-- ADDED
+    private final JTable taskQueueTable;
 
     // --- UI Update Timer ---
     private final Timer updateTimer;
@@ -118,8 +118,7 @@ public class WarehouseSystemGUI extends JFrame {
         controlPanel.add(new JLabel("Stations:"));
         controlPanel.add(stationCountSpinner);
 
-        controlPanel.add(Box.createHorizontalStrut(20)); // Spacer
-
+        controlPanel.add(Box.createHorizontalStrut(20));
         controlPanel.add(startButton);
         controlPanel.add(stopButton);
 
@@ -174,7 +173,7 @@ public class WarehouseSystemGUI extends JFrame {
         JPanel sidePanel = new JPanel();
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
         sidePanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
-        sidePanel.setPreferredSize(new Dimension(350, 0));
+        sidePanel.setPreferredSize(new Dimension(350, 150));
 
         // --- Add Task Panel ---
         JPanel addTaskPanel = new JPanel(new GridBagLayout());
@@ -214,7 +213,7 @@ public class WarehouseSystemGUI extends JFrame {
         JPanel taskQueuePanel = new JPanel(new BorderLayout());
         taskQueuePanel.setBorder(BorderFactory.createTitledBorder("Task Queue (Live)"));
         // Give this a max height so it doesn't expand forever
-        taskQueuePanel.setMaximumSize(new Dimension(350, 200));
+        taskQueuePanel.setMaximumSize(new Dimension(350, 150));
         // Use the existing table helper. Widths are {Task ID, Part, Qty, Status}
         taskQueuePanel.add(initTablePanel(taskQueueTable, new int[]{80, 120, 40, 80}), BorderLayout.CENTER);
         // --- END NEW ---
@@ -241,11 +240,9 @@ public class WarehouseSystemGUI extends JFrame {
             }
         });
         refreshLogFileList();
-
-        // Add sub-panels to main side panel
         sidePanel.add(addTaskPanel);
         sidePanel.add(Box.createVerticalStrut(10));
-        sidePanel.add(taskQueuePanel); // <-- ADDED
+        sidePanel.add(taskQueuePanel); //
         sidePanel.add(Box.createVerticalStrut(10));
         sidePanel.add(logViewerPanel);
 
@@ -398,9 +395,6 @@ public class WarehouseSystemGUI extends JFrame {
         }
     }
 
-    /**
-     * REFACTOR: Runs file I/O on a background thread.
-     */
     private void refreshLogFileList() {
         refreshLogButton.setEnabled(false);
         logFileComboBox.setEnabled(false);
@@ -431,9 +425,6 @@ public class WarehouseSystemGUI extends JFrame {
         worker.execute();
     }
 
-    /**
-     * REFACTOR: Runs file I/O on a background thread.
-     */
     private void loadSelectedLog() {
         String selectedFile = (String) logFileComboBox.getSelectedItem();
         if (selectedFile == null) {

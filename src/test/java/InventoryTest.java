@@ -13,11 +13,7 @@ class InventoryTest {
     private Part part1;
     private Part part2;
 
-    /**
-     * This setup method runs before each @Test.
-     * It creates a fresh Inventory instance with a known initial stock,
-     * ensuring that tests do not interfere with each other.
-     */
+
     @BeforeEach
     void setUp() {
         // 1. Define sample parts for testing
@@ -159,10 +155,6 @@ class InventoryTest {
         assertNull(foundPart, "Should return null for a non-existent part ID");
     }
 
-    /**
-     * Tests that getStockLevel returns the correct quantity for existing
-     * and non-existing parts.
-     */
     @Test
     void testGetStockLevel() {
         // Arrange: A new part not in inventory

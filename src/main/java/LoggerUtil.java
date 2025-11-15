@@ -1,4 +1,3 @@
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -157,28 +156,5 @@ public class LoggerUtil {
         } catch (IOException e) {
             return "Error reading log: " + e.getMessage();
         }
-    }
-
-    // ... viewLog and deleteLogs methods are unchanged but no longer used by the GUI ...
-
-    public static void viewLog(String logName) {
-        // ...
-    }
-
-    public static void deleteLogs(String target) {
-        // ...
-    }
-
-    private static void deleteRecursively(File file) {
-        // ...
-    }
-
-    // --- Getters (unchanged) ---
-    public String getLogPath() {
-        return logFile.toAbsolutePath().toString();
-    }
-
-    public String getLogType() {
-        return logType;
     }
 }

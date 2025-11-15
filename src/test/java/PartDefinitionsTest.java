@@ -9,10 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PartDefinitionsTest {
 
-    /**
-     * Tests the createSampleParts() method.
-     * Verifies that it returns a non-empty list of Part objects.
-     */
     @Test
     void testCreateSampleParts() {
         // Act: Call the static method
@@ -34,11 +30,7 @@ class PartDefinitionsTest {
         assertEquals("Oil Filter", firstPart.name(), "First part name is incorrect");
     }
 
-    /**
-     * Tests the getInitialStock() method.
-     * Verifies that it correctly uses the provided part list to create
-     * a non-empty map of initial stock levels.
-     */
+
     @Test
     void testGetInitialStock() {
         // Arrange: Get the list of parts first, as the method depends on it.

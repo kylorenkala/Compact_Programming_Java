@@ -8,18 +8,11 @@ class PartRequestTest {
 
     private Part samplePart;
 
-    /**
-     * Set up a sample Part object to be used in all tests.
-     * This runs once before any tests.
-     */
     @BeforeEach
     void setUp() {
         samplePart = new Part("P1001", "Oil Filter", "Standard oil filter");
     }
 
-    /**
-     * Tests the successful creation of a valid PartRequest.
-     */
     @Test
     void testCreateSuccess() {
         // Act: Create a new part request
@@ -34,9 +27,6 @@ class PartRequestTest {
         assertEquals(RequestStatus.PENDING, request.status(), "Initial status should be PENDING");
     }
 
-    /**
-     * Tests that creating a request with a null Part throws IllegalArgumentException.
-     */
     @Test
     void testCreateThrowsExceptionForNullPart() {
         // Act & Assert:
@@ -50,9 +40,7 @@ class PartRequestTest {
                 "Exception message should be specific to the null part");
     }
 
-    /**
-     * Tests that creating a request with zero quantity throws IllegalArgumentException.
-     */
+
     @Test
     void testCreateThrowsExceptionForZeroQuantity() {
         // Act & Assert:
@@ -66,9 +54,7 @@ class PartRequestTest {
                 "Exception message should be specific to the non-positive quantity");
     }
 
-    /**
-     * Tests that creating a request with a negative quantity throws IllegalArgumentException.
-     */
+
     @Test
     void testCreateThrowsExceptionForNegativeQuantity() {
         // Act & Assert:
@@ -82,10 +68,7 @@ class PartRequestTest {
                 "Exception message should be specific to the non-positive quantity");
     }
 
-    /**
-     * Tests that sequential calls to 'create' produce unique, sequential request IDs.
-     * This relies on the static AtomicLong counter.
-     */
+
     @Test
     void testCreateGeneratesUniqueIDs() {
         // Act: Create two requests back-to-back.
@@ -98,9 +81,6 @@ class PartRequestTest {
         assertNotEquals(request1.requestID(), request2.requestID(),
                 "Sequential request IDs should be unique");
 
-        // Optional: Verify that they are sequential (e.g., "Task-1" and "Task-2")
-        // Note: This part is fragile if other tests run in parallel.
-        // A safer test is just to check for non-equality.
         try {
             long id1 = Long.parseLong(request1.requestID().split("-")[1]);
             long id2 = Long.parseLong(request2.requestID().split("-")[1]);
@@ -110,10 +90,7 @@ class PartRequestTest {
         }
     }
 
-    /**
-     * Tests the 'withStatus' method, which is part of the 'record' immutability.
-     * It should return a new object with only the status changed.
-     */
+
     @Test
     void testWithStatus() {
         // Arrange: Create an initial request.
